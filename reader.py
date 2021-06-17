@@ -10,7 +10,7 @@ if __name__ == '__main__':
     settings = json.load(fp)
 
   data = []
-  for i in range(settings["ReadPackageSize"]):
+  for i in range(settings["BlePackageSize"]):
     with open(settings["BlePipe"], "r") as fp:
       z = fp.read().split(' ')
       t = float(z[0])
@@ -18,8 +18,12 @@ if __name__ == '__main__':
         data.append(to_int16(z[1:-2]))
         print("time:", t, "data:", data[-1][:10], "...")
 
-  if settings["SendToServer"]:
-    print("saving data")
-    #sname = str(int(time.time()))
-    #np.savetxt('data/'+sname, data, fmt="%.3f")
-    #np.savetxt(settings["UploadPipe"], data, fmt="%.3f")
+  if settings["SaveToFile"]:
+    print("Saving data to file")
+    sname = str(int(time.time()))
+    np.savetxt('data/'+sname, data, fmt="%.3f")
+  
+  if settings["Upload"]:
+    print("Uploading data")
+    # sad
+    
