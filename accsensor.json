@@ -1,0 +1,18 @@
+{
+	"BleAddr": "98:07:2D:41:57:04",
+	"BlePipe": "able",
+	"WriteSleep": -1,
+	"WriteSize": -1,
+	"BlePackageSize": 100,
+	"Packages": 1,
+	"DataLen": 183,
+	"SavePipe": "asave",
+	"SaveToFile": true,
+	"Upload": false,
+	"Plot": true,
+	"PlotPipe": "aplot",
+	"Calibration": {
+		"Scale": {"x": 1, "y": 1, "z": 1},
+		"Offset": {"x": 0, "y": 0, "z": 0}
+	}
+}

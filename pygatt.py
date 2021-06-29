@@ -21,28 +21,32 @@ class BleSensor:
       # connect
       gatt.sendline("connect")
       gatt.expect("Connection successful")
+      print(gatt.after.decode())
       logger.write(gatt.after.decode()+'\n')
       # set mtu
       gatt.sendline("mtu 240")
       gatt.expect("MTU was exchanged successfully: 236")
+      print(gatt.after.decode())
       logger.write(gatt.after.decode()+' \n')
 
       # turn on notifications
       # remove?
-      """
       gatt.sendline("char-write-req 0x28 0100")
       gatt.expect("Characteristic value was written successfully")
-      """
 
       # writing ble data to pipe
       gatt.sendline("char-write-cmd 1E 53")
       t0 = time.time()
       for i in range(self.count):
         logger.write(str(i)+'\n')
-        time.sleep(self.sleep)
+        #time.sleep(self.sleep)
         gatt.expect("\r\n")
         x = gatt.before.decode()[82:]
-        t = np.round(time.time() - t0, 2)
+        #print(str(i)+': '+x)
+        logger.write(str(i)+x+'\n')
+        #t = np.round(time.time() - t0, 2)
+        t = time.time()
+        print(t)
         with open(self.pname, "w") as fp:
           fp.write(str(t)+" "+x+" \n")
       # stopping the notification
@@ -61,7 +65,7 @@ if __name__ == '__main__':
       settings["BleAddr"],
       settings["BlePipe"], 
       settings["WriteSleep"], 
-      settings["WriteSize"]
+      settings["BlePackageSize"]
     )
   ble.write_to_pipe()
   
