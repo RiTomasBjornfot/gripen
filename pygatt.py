@@ -46,7 +46,8 @@ class BleSensor:
         logger.write(str(i)+x+'\n')
         #t = np.round(time.time() - t0, 2)
         t = time.time()
-        print(t)
+        #print(t)
+        print(i)
         with open(self.pname, "w") as fp:
           fp.write(str(t)+" "+x+" \n")
       # stopping the notification

@@ -10,7 +10,8 @@ if __name__ == '__main__':
     settings = json.load(fp)
 
   rdata = []
-  for i in range(settings["BlePackageSize"]):
+  #for i in range(settings["BlePackageSize"]):
+  for i in range(int(1e9)):
     with open(settings["BlePipe"], "r") as fp:
       z = fp.read().split(' ')
       t = float(z[0])
@@ -25,8 +26,9 @@ if __name__ == '__main__':
                 _mean = np.mean(vals)
                 _std = np.std(vals)
                 _str += str(_mean)+" "+str(_std)+" "
-            print("time:", t, time.time())
+            #print("time:", t, time.time())
             pp.write(_str[:-1])
+            print(i, ':', _str[:-1])
 
   if settings["SaveToFile"]:
       #print("Saving data to file")

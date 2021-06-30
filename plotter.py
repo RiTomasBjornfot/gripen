@@ -11,25 +11,24 @@ if __name__ == '__main__':
   with open(sys.argv[1], "r") as fp:
     settings = json.load(fp)
   
-  x = np.array([i for i in range(10)])
-  y = [np.empty(10), np.empty(10)]
-  p = [plt.subplot(211), plt.subplot(212)]
-  [_p.grid() for _p in p]
+  x = np.array([0, 1, 2])
+  y = np.empty((5, 3))
+  ax = plt.subplot(111)
+  ax.set_xticks([0, 1, 2])
+  ax.set_xticklabels(["x", "y", "z"])
 
-  #for i in range(settings["BlePackageSize"]):
-  while True:
+  for i in range(int(1e9)):
     with open(settings["PlotPipe"], "r") as fp:
       try:
         data = [float(x) for x in fp.read().split(' ')]
-        #print(data)
-        for i in range(2):
-          y[i][:-1] = y[i][1:]
-          y[i][-1] = data[-2+i]
-          p[i].lines = []
-          p[i].set_ylim(min(y[i]) - 1, max(y[i]) + 1)
-          p[i].plot(x, y[i], '.-', color='C0')
-        print(time.time())
+        # mean
+        y[i % 5, 0] = data[0]
+        y[i % 5, 1] = data[2]
+        y[i % 5, 2] = data[4]
+        pbar = ax.bar(x, np.mean(y, axis=0), color='C0')
         plt.pause(1e-9)
+        pbar.remove()
+        print(i, ':', data)
       except Exception as e:
         print(e)
     
