@@ -11,12 +11,17 @@ if __name__ == '__main__':
 
   rdata = []
   #for i in range(settings["BlePackageSize"]):
-  for i in range(int(1e9)):
+  #for i in range(int(1e9)):
+  i = 0
+  while i < settings["BlePackageSize"]:
     with open(settings["BlePipe"], "r") as fp:
       z = fp.read().split(' ')
       t = float(z[0])
+      #print(len(z))
       if len(z) == settings["DataLen"]:
-        rdata.append(to_int16(z[1:-2]))
+        i += 1
+        print(i)
+        rdata.append(to_int16(z[1:-2])[:-9])
         # send to plotter
         if settings["Plot"]:
           with open(settings["PlotPipe"], "w") as pp:
@@ -28,13 +33,12 @@ if __name__ == '__main__':
                 _str += str(_mean)+" "+str(_std)+" "
             #print("time:", t, time.time())
             pp.write(_str[:-1])
-            print(i, ':', _str[:-1])
 
   if settings["SaveToFile"]:
-      #print("Saving data to file")
+    print("Saving data to file")
     sname = settings["SavePipe"]+"_"+str(int(time.time()))
     #np.savetxt('data/'+sname, rdata, fmt="%.3f")
-    np.savetxt('data/data', np.array(rdata))
+    np.savetxt('data/'+settings['FileName'], np.array(rdata))
   
   if settings["Upload"]:
     print("Uploading data")

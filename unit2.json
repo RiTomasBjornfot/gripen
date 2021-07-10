@@ -1,0 +1,15 @@
+{
+	"BleAddr": "80:6F:B0:ED:38:33",
+	"BlePipe": "u2_ble",
+	"WriteSleep": 0.1,
+	"WriteSize": 20,
+	"BlePackageSize": 1000,
+	"Packages": 1,
+	"DataLen": 201,
+	"SavePipe": "u2_save",
+	"SaveToFile": true,
+	"FileName": "u2",
+	"Upload": false,
+	"Plot": false,
+	"PlotPipe": "u2_plot"
+}

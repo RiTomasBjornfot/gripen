@@ -37,7 +37,9 @@ class BleSensor:
       # writing ble data to pipe
       gatt.sendline("char-write-cmd 1E 53")
       t0 = time.time()
-      for i in range(self.count):
+      #for i range(self.count):
+      i = 0
+      while i < 2*self.count:
         logger.write(str(i)+'\n')
         #time.sleep(self.sleep)
         gatt.expect("\r\n")
@@ -50,6 +52,7 @@ class BleSensor:
         print(i)
         with open(self.pname, "w") as fp:
           fp.write(str(t)+" "+x+" \n")
+        i += 1
       # stopping the notification
       gatt.sendline("char-write-cmd 1E 5A")
       # disconnecting and closing
