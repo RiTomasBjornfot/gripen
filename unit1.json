@@ -4,7 +4,7 @@
 	"WriteSleep": 0.1,
 	"WriteSize": 20,
 	"BlePackageSize": 1000,
-	"Packages": 1,
+	"Packages": 25,
 	"DataLen": 201,
 	"SavePipe": "u1_save",
 	"SaveToFile": true,

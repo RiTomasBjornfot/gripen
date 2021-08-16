@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import pexpect, time, json, sys
 import numpy as np
+import os
 
 class BleSensor:
     def __init__(self, addr, pname, sleep, count):
@@ -33,13 +34,13 @@ class BleSensor:
       # remove?
       gatt.sendline("char-write-req 0x28 0100")
       gatt.expect("Characteristic value was written successfully")
-
+      
       # writing ble data to pipe
       gatt.sendline("char-write-cmd 1E 53")
       t0 = time.time()
-      #for i range(self.count):
-      i = 0
-      while i < 2*self.count:
+      #i = 0
+      #while i < 2*self.count+2:
+      for i in range(int(1e9)):
         logger.write(str(i)+'\n')
         #time.sleep(self.sleep)
         gatt.expect("\r\n")
@@ -49,7 +50,7 @@ class BleSensor:
         #t = np.round(time.time() - t0, 2)
         t = time.time()
         #print(t)
-        print(i)
+        #print(i)
         with open(self.pname, "w") as fp:
           fp.write(str(t)+" "+x+" \n")
         i += 1

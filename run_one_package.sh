@@ -1,3 +1,5 @@
 #!/usr/bin/bash
-./pygatt.py tyresensor.json &
-./reader.py tyresensor.json
+./plotter.py unit2.json &
+./writer.py unit2.json &
+./reader.py unit2.json &
+./pygatt.py unit2.json

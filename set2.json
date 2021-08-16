@@ -1,0 +1,14 @@
+{
+	"BleAddr": "98:07:2D:41:57:04",
+	"BlePipe": "pble",
+	"WriteSleep": 0.1,
+	"WriteSize": 20,
+	"BlePackageSize": 500,
+	"Packages": 1,
+	"DataLen": 183,
+	"SavePipe": "psave",
+	"SaveToFile": true,
+	"Upload": false,
+	"Plot": true,
+	"PlotPipe": "pplot"
+}
