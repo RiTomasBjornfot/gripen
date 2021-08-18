@@ -52,8 +52,7 @@ class BleSensor:
         #print(t)
         #print(i)
         with open(self.pname, "w") as fp:
-          fp.write(str(t)+" "+x+" \n")
-        i += 1
+          fp.write(str(0)+" "+x+" \n")
       # stopping the notification
       gatt.sendline("char-write-cmd 1E 5A")
       # disconnecting and closing

@@ -10,7 +10,7 @@ if __name__ == '__main__':
   with open(sys.argv[1], "r") as fp:
     settings = json.load(fp)
   
-    # remvoving the named pipe    
+    # remvoving the old named pipe    
     try:
       print("Removing the old pipe")
       os.remove(settings["BlePipe"])    
@@ -23,21 +23,20 @@ if __name__ == '__main__':
       os.mkfifo(settings["BlePipe"])
     except FileExistsError as e:    
       print(e)
-
-  #for i in range(settings["Packages"]*settings["BlePackageSize"]+2):
   for i in range(int(1e9)):
-      with open(settings["BlePipe"], "r") as fp:
-        z = fp.read().split(' ')
-      if len(z) == settings["DataLen"]:
-        #print(i)
-        raw, _str = to_int16(z[1:-2])[:-9], ""
-        for j in range(3):
-          _mean, _std = np.mean(raw[j::3]), np.std(raw[j::3])
-          _str += str(_mean)+" "+str(_std)+" "
-        # send to writer
-        with open(settings["SavePipe"], "w") as sp:
-          sp.write(_str[:-1])
-        # send to plotter
+    with open(settings["BlePipe"], "r") as fp:
+      z = fp.read()
+      if len(z.split(' ')) == settings["DataLen"]:
+        with open(settings["SavePipe"], "w") as fpp:
+          fpp.write(z)
         if settings["Plot"]:
-          with open(settings["PlotPipe"], "w") as pp:
-            pp.write(_str[:-1])
+          raw, _str = to_int16(z.split(' ')[1:-2])[:-9], ""
+          for j in range(3):
+            _mean = np.mean(raw[j::3])
+            _str += str(_mean)+" "
+            try:
+              with open(settings["PlotPipe"], "w") as pp:
+                pp.write(_str[:-1])
+            except Exception as e:
+              print("reader.py:", e)
+

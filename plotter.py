@@ -18,7 +18,6 @@ try:
   os.remove(settings["PlotPipe"])    
 except FileNotFoundError as e:    
   print(e)    
-
 # creating a new named pipe    
 try:    
   print("Creating a new pipe")
@@ -26,18 +25,17 @@ try:
 except FileExistsError as e:    
   print(e)
 
+cal = settings["Calibration"]
 for i in range(int(1e9)):
   with open(settings["PlotPipe"], "r") as fp:
     try:
-      data = [float(x) for x in fp.read().split(' ')]
-      # mean
-      y[i % 5, 0] = data[0]
-      y[i % 5, 1] = data[2]
-      y[i % 5, 2] = data[4]
-      pbar = ax.bar(x, np.mean(y, axis=0), color='C0')
+      y = np.array([float(y) for y in fp.read().split(' ')])
+      y = y*4.3/pow(2, 12)
+      y -= cal
+      y *= 1/6.5e-3
+      pbar = ax.bar(x, y, color='C0')
       plt.pause(1e-9)
       pbar.remove()
-      #print(i % settings["BlePackageSize"], ':', data)
     except Exception as e:
       print(e)
 

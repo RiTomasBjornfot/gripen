@@ -1,15 +1,16 @@
 {
 	"BleAddr": "80:6F:B0:ED:36:D6",
-	"BlePipe": "u1_ble",
+	"Calibration": [1.64, 1.64, 1.64],
 	"WriteSleep": 0.1,
 	"WriteSize": 20,
-	"BlePackageSize": 1000,
-	"Packages": 25,
+	"BlePackageSize": 200,
+	"Packages": 20,
 	"DataLen": 201,
-	"SavePipe": "u1_save",
 	"SaveToFile": true,
-	"FileName": "u1",
+	"Plot": true,
 	"Upload": false,
-	"Plot": false,
+	"FileName": "u1",
+	"BlePipe": "u1_ble",
+	"SavePipe": "u1_save",
 	"PlotPipe": "u1_plot"
 }
