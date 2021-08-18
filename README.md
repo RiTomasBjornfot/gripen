@@ -4,12 +4,15 @@ This is the demonstator software for the Gripen project. The goal is to measure 
 # Limitations
 The system is not a real time system. Therefore, depending on the computer performance, there may be some time difference between the "live" plot and the actual event. Tests shows good performance on PC but poor performance on Raspberry Pi. When using Raspberry Pi, the recommendation is to set __plot__ to *false*. 
 
-To give similar system performace regardless of number of blutooth devices or feature settings, the system uses paralell processing. This works well up to to a certain number of BLE units.   
+To give similar system performace regardless of number of BLE devices or feature settings, the system uses paralell processing. This works well up to to a certain number of BLE units.
+
+The SW does not cover all possible situations. It is best to restart all programs and BLE's between runs. 
 
 # Prerequisits
  - PC with linux OS
  - Raspberry Pi with latest Raspbian OS
  - Python 3.x
+ - Julia 1.6.x
 
 # How to get started (PC)
  1. Download this repository to your __gripen__ folder
@@ -25,9 +28,9 @@ To give similar system performace regardless of number of blutooth devices or fe
  11. Open a new terminal and type ```./web.jl```
  12. Open your web browser and paste ```http://0.0.0.0:8050/``` in the address field
  13. Update the BLE data in the web interface using F5
- 14. Run ```./killprograms``` when done.
+ 14. When done, kill run_unit<x>.sh using __CTRL-C__ and run ```./killprograms```.
 
- # Features
+# Features
  This is a description of the features in the json file
  Key | Value | Description
  --- | --- | ---
