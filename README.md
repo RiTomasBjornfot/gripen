@@ -28,9 +28,9 @@ e settings. The system uses paralell processing.
  --- | --- | ---
   __BleAddr__ | String |The bluetooth address of the unit
   __BlePipe__ | String | The name of the named pipe to the bluetooth
-  __WriteSleep__ | Float | ?
-  __WriteSize__ | Int | ?
-  __BlePackageSize__ | Int | ?
+  __WriteSleep__ | Float | Not used
+  __WriteSize__ | Int | Not used
+  __BlePackageSize__ | Int | The number of readings in each package
   __Packages__ | Int | The number of packages to save.
   __DataLen__ | Int | The number of datapoints one grab.
   __SavePipe__ | String | The name of the save fifo.
