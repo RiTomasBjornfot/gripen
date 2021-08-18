@@ -25,6 +25,7 @@ To give similar system performace regardless of number of blutooth devices or fe
  11. Open a new terminal and type ```./web.jl```
  12. Open your web browser and paste ```http://0.0.0.0:8050/``` in the address field
  13. Update the BLE data in the web interface using F5
+ 14. Run ```./killprograms``` when done.
 
  # Features
  This is a description of the features in the json file
@@ -44,13 +45,4 @@ To give similar system performace regardless of number of blutooth devices or fe
   __BlePipe__ | String | The name of the named pipe to the bluetooth
  __SavePipe__ | String | The name of the save fifo.
   __PlotPipe__ | String | The name of the plot fifo.
- 
- 
-# A simple test
- 1. Set __Upload__ to __false__ and __SaveToFile__ to __true__.
- 2. Set __Packages__ to 1 and __BlePackageSize__ to __5__.
- 3. Open a terminal and type: ```./pygatt.py newdevice.json```
- 4. Open a new terminal and type: ```./reader.py newdevice.json```
- 5. Check the *.<__BlePipe__>.log* contains expected result
- 6. Check that file and *<__BlePipe__>_<unixtime>.txt* contains data
- 7. Check web page
+
